@@ -31,11 +31,11 @@ spec:
               cpu: 500m
               memory: 500Mi
           env:
-          - name: AIRPLAYNAME
-            value: {{ .Values.kubeaudio.devicename }}
-        volumeMounts:
-        - mountPath: /dev/snd
-          name: dev-snd
+            - name: AIRPLAYNAME
+              value: {{ .Values.kubeaudio.devicename }}
+      volumeMounts:
+        mountPath: /dev/snd
+        name: dev-snd
       volumes:
       - name: dev-snd
         hostPath:
