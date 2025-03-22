@@ -3,3 +3,6 @@ kubeaudio:
   image: latest
   devicename: kubedevice
   nodename: master1
+
+virtualhere:
+  enable: false

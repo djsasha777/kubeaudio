@@ -1,0 +1,58 @@
+{{- if .Values.virtualhere.enable }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: virtualhere
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: virtualhere
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: virtualhere
+    spec:
+      containers:
+        - name: virtualhere
+          image: djsasha777/virtualhere:{{ .Values.virtualhere.image }}
+          securityContext:
+            privileged: true
+          ports:
+            - containerPort: 7575
+              protocol: TCP
+          resources:
+            limits:
+              cpu: '1'
+              memory: 1Gi
+            requests:
+              cpu: 500m
+              memory: 500Mi
+          env:
+            - name: AIRPLAYNAME
+              value: {{ .Values.virtualhere.devicename }}
+      volumeMounts:
+        mountPath: /dev
+        name: dev
+      volumes:
+      - name: dev
+        hostPath:
+          path: /dev
+      nodeName: {{ .Values.virtualhere.nodename }}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: virtualhere
+spec:
+  ports:
+    - protocol: TCP
+      port: 7575
+      targetPort: 7575
+      nodePort: 7575
+  selector:
+    app: virtualhere
+{{- end }}
