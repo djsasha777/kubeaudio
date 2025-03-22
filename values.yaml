@@ -1,0 +1,6 @@
+kubeaudio:
+  enable: true
+  adressPrefix: 24
+  image: latest
+  localDev: ens18
+  devicename: kubedevice
