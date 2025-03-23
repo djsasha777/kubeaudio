@@ -1,27 +1,27 @@
-{{- if .Values.kubeaudio.enable }}
+{{- if .Values.virtualhere.enable }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubeaudio
+  name: virtualhere
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: kubeaudio
+      app: virtualhere
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: kubeaudio
+        app: virtualhere
     spec:
       containers:
-        - name: kubeaudio
-          image: djsasha777/kubeaudio:{{ .Values.kubeaudio.image }}
+        - name: virtualhere
+          image: djsasha777/virtualhere:{{ .Values.virtualhere.image }}
           securityContext:
             privileged: true
           ports:
-            - containerPort: 5000
+            - containerPort: 7575
               protocol: TCP
           resources:
             limits:
@@ -30,29 +30,26 @@ spec:
             requests:
               cpu: 500m
               memory: 500Mi
-          env:
-            - name: AIRPLAYNAME
-              value: {{ .Values.kubeaudio.devicename }}
       volumeMounts:
-        mountPath: /dev/snd
-        name: dev-snd
+        mountPath: /dev
+        name: dev
       volumes:
-      - name: dev-snd
+      - name: dev
         hostPath:
-          path: /dev/snd
-      nodeName: {{ .Values.kubeaudio.nodename }}
+          path: /dev
+      nodeName: {{ .Values.virtualhere.nodename }}
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubeaudio
+  name: virtualhere
 spec:
   ports:
     - protocol: TCP
-      port: 5000
-      targetPort: 5000
-      nodePort: 5000
+      port: 7575
+      targetPort: 7575
+      nodePort: 7575
   selector:
-    app: kubeaudio
+    app: virtualhere
 {{- end }}

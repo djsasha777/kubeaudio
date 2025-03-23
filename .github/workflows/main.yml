@@ -16,7 +16,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-      - name: Docker meta
+      - name: Docker meta audio
         id: metaaudio
         uses: docker/metadata-action@v5
         with:
@@ -26,10 +26,27 @@ jobs:
             type=ref,event=branch
             type=semver,pattern={{version}}
             type=sha
+      - name: Docker meta here
+        id: metahere
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/virtualhere
+          tags: |
+            type=schedule
+            type=ref,event=branch
+            type=semver,pattern={{version}}
+            type=sha
       - name: Build kubeaudio
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: Dockerfile
+          file: kubeaudio.Dockerfile
           push: true
           tags: ${{ steps.metaaudio.outputs.tags }}
+      - name: Build virtualhere
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: virtualhere.Dockerfile
+          push: true
+          tags: ${{ steps.metahere.outputs.tags }}
