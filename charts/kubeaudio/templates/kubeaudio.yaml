@@ -38,7 +38,9 @@ spec:
           image: busybox:1.28
           command: /usr/bin/nsenter
           args:
-          - 'apt install alsa-tools'
+          - 'apt' 
+          - 'install' 
+          - 'alsa-tools'
       volumeMounts:
         mountPath: /dev/snd
         name: dev-snd
