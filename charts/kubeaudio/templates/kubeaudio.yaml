@@ -33,15 +33,15 @@ spec:
           env:
             - name: AIRPLAYNAME
               value: {{ .Values.kubeaudio.devicename }}
-      initContainers:
-        - name: init-alsa
-          image: busybox:1.28
-          securityContext:
-            privileged: true
-          command: 
-            - nsenter
-          args:
-            - ls
+      # initContainers:
+      #   - name: init-alsa
+      #     image: busybox:1.28
+      #     securityContext:
+      #       privileged: true
+      #     command: 
+      #       - nsenter
+      #     args:
+      #       - ls
       volumeMounts:
         mountPath: /dev/snd
         name: dev-snd
