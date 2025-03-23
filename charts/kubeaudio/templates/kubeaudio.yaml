@@ -36,7 +36,10 @@ spec:
       initContainers:
         - name: init-alsa
           image: busybox:1.28
-          command: /usr/bin/nsenter
+          securityContext:
+            privileged: true
+          command: 
+            - /usr/bin/nsenter
           args:
             - ls
       volumeMounts:
