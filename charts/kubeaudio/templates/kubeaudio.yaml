@@ -59,4 +59,5 @@ spec:
       nodePort: 5000
   selector:
     app: kubeaudio
+  type: nodePort
 {{- end }}
