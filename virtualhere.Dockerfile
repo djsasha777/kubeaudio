@@ -24,7 +24,7 @@ RUN apk -U add \
  && sudo tee /usr/local/etc/virtualhere/config.ini <<< "License=FE17189D-5211-C848-A448-788475CB15C8,20,MCECDwCdc5KISTF+TCfw6p6JJAIOS+CN+M5yfpp5LTXMofY=" \
 
  && cd / \
- 
+
  && apk --purge del \
         git \
         curl \
@@ -34,4 +34,4 @@ RUN apk -U add \
         libjansson-dev \
         libusb-dev \
         libc6-i386 \
-        libssl-dev \
+        libssl-dev
