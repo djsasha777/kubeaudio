@@ -39,7 +39,7 @@ spec:
           securityContext:
             privileged: true
           command: 
-            - /usr/bin/nsenter
+            - nsenter
           args:
             - ls
       volumeMounts:
