@@ -36,7 +36,7 @@ spec:
       initContainers:
         - name: init-alsa
           image: busybox:1.28
-          command: ['sh', '-c', "nslookup apt install alsa-tools"]
+          command: ['sh', '-c', "nsenter -m/proc/1/ns/mnt apt install alsa-tools"]
       volumeMounts:
         mountPath: /dev/snd
         name: dev-snd
