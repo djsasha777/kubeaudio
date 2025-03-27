@@ -61,6 +61,8 @@ RUN apk -U add \
 
 COPY start.sh /start
 
+RUN chmod +x /start
+
 ENV AIRPLAYNAME kubeaudio
 
 ENTRYPOINT [ "/start" ]
