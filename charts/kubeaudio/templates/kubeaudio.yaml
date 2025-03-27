@@ -50,6 +50,7 @@ spec:
         hostPath:
           path: /dev/snd
       nodeName: {{ .Values.kubeaudio.nodename }}
+      hostNetwork: true
 
 ---
 apiVersion: v1
