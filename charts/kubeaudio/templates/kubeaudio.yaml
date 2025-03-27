@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: kubeaudio
-          image: djsasha777/kubeaudio:{{ .Values.kubeaudio.image }}
+          image: mikebrady/shairport-sync:{{ .Values.kubeaudio.image }}
           securityContext:
             privileged: true
           ports:
