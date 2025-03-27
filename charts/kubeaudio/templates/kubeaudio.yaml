@@ -30,9 +30,6 @@ spec:
             requests:
               cpu: 500m
               memory: 500Mi
-          env:
-            - name: AIRPLAYNAME
-              value: {{ .Values.kubeaudio.devicename }}
       # initContainers:
       #   - name: init-alsa
       #     image: busybox:1.28

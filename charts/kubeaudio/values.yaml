@@ -1,5 +1,4 @@
 kubeaudio:
   enable: true
   image: latest
-  devicename: kubedevice
-  nodename: master1
+  nodename: node1
